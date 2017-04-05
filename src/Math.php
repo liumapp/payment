@@ -10,6 +10,7 @@
 namespace liumapp\payment;
 
 class Math {
+
     public $number ;
 
     public function __construct($number = 1)
@@ -26,4 +27,5 @@ class Math {
     {
         return $this->number;
     }
+
 }
