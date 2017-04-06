@@ -43,7 +43,6 @@ abstract class NotifyStrategy
         if ($notifyData === false) {// 失败，就返回错误
             return $this->replyNotify(false, '获取通知数据失败');
         }
-
         // 检查异步通知返回的数据是否有误
         $checkRet = $this->checkNotifyData($notifyData);
         if ($checkRet === false) {// 失败，就返回错误

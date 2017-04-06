@@ -53,7 +53,6 @@ class Notify
         if (! in_array($type, self::$supportChannel)) {
             throw new \ErrorException('sdk当前不支持该异步方式，当前仅支持：' . implode(',', self::$supportChannel));
         }
-
         try {
             $instance = self::getInstance($type, $config);
 
