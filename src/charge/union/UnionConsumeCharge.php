@@ -16,6 +16,6 @@ class UnionConsumeCharge extends UnionBaseStrategy
     {
         $this->config->txnType = '01';
         $this->config->txnSubType = '01';
-        return 'huluwa\pay\common\union\data\charge\UnionConsumeData';
+        return 'liumapp\payment\common\union\data\charge\UnionConsumeData';
     }
 }

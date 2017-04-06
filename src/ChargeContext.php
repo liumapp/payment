@@ -8,6 +8,9 @@
 
 namespace liumapp\payment;
 
+use liumapp\payment\charge\ali\AliQrCharge;
+use liumapp\payment\charge\union\UnionConsumeCharge;
+use liumapp\payment\common\BaseStrategy;
 use liumapp\payment\config\Config;
 
 class ChargeContext
@@ -23,7 +26,7 @@ class ChargeContext
      * @param string $channel 支付渠道
      *  - @see Config
      * @param array $config 配置文件
-     * @throws ErrorException
+     * @throws \ErrorException
      */
     public function initCharge($channel, array $config)
     {
@@ -60,7 +63,7 @@ class ChargeContext
      * ```
      *
      * @return array
-     * @throws ErrorException
+     * @throws \ErrorException
      */
     public function charge(array $data)
     {

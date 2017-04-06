@@ -17,14 +17,14 @@ class AliQrCharge extends AliBaseStrategy
     protected function getBuildDataClass()
     {
         $this->config->method = AliConfig::QR_PAY_METHOD;
-        return 'huluwa\pay\common\ali\data\charge\QrChargeData';
+        return 'liumapp\payment\common\ali\data\charge\QrChargeData';
     }
 
     /**
      * 处理扫码支付的返回值
      * @param array $ret
      *
-     * @throws ErrorException
+     * @throws \ErrorException
      * @return string  可生产二维码的uri
      * @author helei
      */

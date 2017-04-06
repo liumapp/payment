@@ -8,6 +8,7 @@
 
 namespace liumapp\payment\client;
 
+use liumapp\payment\ChargeContext;
 use liumapp\payment\config\Config;
 
 class Charge
