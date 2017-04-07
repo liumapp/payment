@@ -2,6 +2,18 @@
 
 > 对阿里、银联以及后期将集成的微信支付接口的抽象
 
+## 下载使用
+
+在您的composer.json文件中，添加以下代码
+
+    "require": {
+        "liumapp/payment":"dev-master"
+    },
+
+然后执行:
+
+    composer require liumapp/payment
+
 ## 使用方法
 
 ### 1.开发环境
@@ -118,3 +130,24 @@
     }
     
 > 上述两段代码中，$ret = Notify::run($type, $config , $callback);将会根据支付类型和支付宝的相关配置，来处理回调的参数，如果monolog记录的日志为success，那就表明用户支付成功，同时调用callback的业务逻辑。
+
+#### 银联支付
+
+    use liumapp\payment\client\Charge;
+     $data = [
+        'config' => [
+            'merId' => \Yii::$app->settingParam->get('unionMerId'),
+            'sdk_sign_cert_path' => \Yii::$app->settingParam->get('unionSignCertPath'),
+            'sdk_sign_cert_pwd' => \Yii::$app->settingParam->get('unionSignCertPwd'),
+            'sdk_encrypt_cert_path' => \Yii::$app->settingParam->get('unionEncryptCertPath'),
+            'sdk_verify_cert_dir' => \Yii::$app->settingParam->get('unionCertDir'),
+        ],
+        'data' => [
+            'orderId' => time(),
+            'txnTime' => date('YmdHmi' , time()),
+            'txnAmt' => 1,
+        ],
+    ];
+    echo Charge::run('uni_con' , $data['config'] , $data['data']);
+
+> 封装好银联需要的配置和订单数据后，直接调用Charge的run方法并输出，即可。
