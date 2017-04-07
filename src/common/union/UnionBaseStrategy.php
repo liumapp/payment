@@ -37,6 +37,7 @@ abstract class UnionBaseStrategy implements BaseStrategy
 
     public function handle(array $data)
     {
+
         $buildClass = $this->getBuildDataClass();
         try {
             $this->reqData = new $buildClass($this->config, $data);

@@ -132,6 +132,17 @@ class UnionConfig extends ConfigInterface
         } else {
             throw new \ErrorException('证书目录未设置');
         }
+        if (isset($config['frontUrl'])) {
+            $this->frontUrl = $config['frontUrl'];
+        } else {
+            throw new \ErrorException('前台返回地址未设置');
+        }
+        if (isset($config['backUrl'])) {
+            $this->backUrl = $config['backUrl'];
+        } else {
+            throw new \ErrorException('后台通知地址未设置');
+        }
+
 
     }
 }
