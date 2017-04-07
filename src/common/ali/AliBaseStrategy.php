@@ -59,7 +59,6 @@ abstract class AliBaseStrategy implements BaseStrategy
     public function handle(array $data)
     {
         $buildClass = $this->getBuildDataClass();
-
         try {
             $this->reqData = new $buildClass($this->config, $data);
         } catch (\ErrorException $e) {
@@ -69,7 +68,6 @@ abstract class AliBaseStrategy implements BaseStrategy
         $this->reqData->setSign();
 
         $data = $this->reqData->getData();
-
         return $this->retData($data);
     }
 
@@ -131,7 +129,6 @@ abstract class AliBaseStrategy implements BaseStrategy
         }
 
         $data['sign'] = $sign;// sign  需要放在末尾
-
         return $this->config->getewayUrl . http_build_query($data);
     }
 
