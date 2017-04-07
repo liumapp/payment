@@ -30,6 +30,8 @@ final Class Config
 
     const ALI_TRANSFER = 'ali_transfer';// 转账
 
+    const UNION_CHARGE = 'union_charge'; //银联支付
+
 
     //========================= 金额问题设置 =======================//
     const PAY_MIN_FEE = '0.01';// 支付的最小金额

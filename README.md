@@ -131,6 +131,8 @@
     
 > 上述两段代码中，$ret = Notify::run($type, $config , $callback);将会根据支付类型和支付宝的相关配置，来处理回调的参数，如果monolog记录的日志为success，那就表明用户支付成功，同时调用callback的业务逻辑。
 
+**请注意，您的订单参数中的notify_url，必须跟支付宝开放平台后台设置授权回调地址的一样，并且不能带有r=site/index这样的参数**
+
 #### 银联支付
 
     use liumapp\payment\client\Charge;
@@ -151,3 +153,4 @@
     echo Charge::run('uni_con' , $data['config'] , $data['data']);
 
 > 封装好银联需要的配置和订单数据后，直接调用Charge的run方法并输出，即可。
+

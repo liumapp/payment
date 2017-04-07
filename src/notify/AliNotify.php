@@ -70,7 +70,6 @@ class AliNotify extends NotifyStrategy
     public function checkNotifyData(array $data)
     {
         if (!isset($data['trade_status'])) {
-            throw new \ErrorException('没有获取到订单状态');
             return false;
         }
         $status = $this->getTradeStatus($data['trade_status']);

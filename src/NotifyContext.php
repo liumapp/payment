@@ -12,6 +12,7 @@ use liumapp\payment\config\Config;
 use liumapp\payment\notify\AliNotify;
 use liumapp\payment\notify\NotifyStrategy;
 use liumapp\payment\notify\PayNotifyInterface;
+use liumapp\payment\notify\UnionNotify;
 
 class NotifyContext
 {
@@ -37,6 +38,10 @@ class NotifyContext
             switch ($channel) {
                 case Config::ALI_CHARGE:
                     $this->notify = new AliNotify($config);
+                    break;
+
+                case Config::UNION_CHARGE:
+                    $this->notify = new UnionNotify($config);
                     break;
                 default:
                     throw new \ErrorException('当前仅支持：ALI_CHARGE WX_CHARGE 两个常量');

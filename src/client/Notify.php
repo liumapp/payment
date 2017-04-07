@@ -16,7 +16,7 @@ class Notify
     private static $supportChannel = [
         Config::ALI_CHARGE,// 支付宝
 
-        Config::UNI_CONSUME,//银联
+        Config::UNION_CHARGE,//银联
     ];
 
     /**
