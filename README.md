@@ -154,3 +154,43 @@
 
 > 封装好银联需要的配置和订单数据后，直接调用Charge的run方法并输出，即可。
 
+
+#### 银联支付的通知回调
+    
+    use liumapp\payment\client\Notify;
+    
+    $log = new Logger('union');
+    $log->pushHandler(new StreamHandler(Yii::getAlias('@frontend') . '/log/unionLog' , Logger::INFO));
+    $log->addInfo('this is union notify:');
+    
+    $callback = new PayCallBack();
+    $type = 'union_charge';
+    $config = [
+        'merId' => \Yii::$app->settingParam->get('unionMerId'),
+        'sdk_sign_cert_path' => \Yii::$app->settingParam->get('unionSignCertPath'),
+        'sdk_sign_cert_pwd' => \Yii::$app->settingParam->get('unionSignCertPwd'),
+        'sdk_encrypt_cert_path' => \Yii::$app->settingParam->get('unionEncryptCertPath'),
+        'sdk_verify_cert_dir' => \Yii::$app->settingParam->get('unionCertDir'),
+        'frontUrl' => \Yii::$app->urlManager->createAbsoluteUrl(['order/index']),
+        'backUrl' => \Yii::$app->urlManager->createAbsoluteUrl(['site/union-notify']),
+    ];
+    try {
+        $ret = Notify::run($type , $config , $callback);
+    } catch (\ErrorException $e) {
+        $log->addError($e->getMessage());
+    }
+    $log->addInfo($ret);
+    echo $ret;
+    
+> 上述代码中的PayCallBack类的代码为：
+
+    class PayCallBack extends Model implements PayNotifyInterface
+    {
+        public function notifyProcess(array $data)
+        {
+            // 执行业务逻辑，成功后返回true
+            return true;
+        }
+    }
+    
+> 创建订单的参数中，设置backUrl指向上述代码的地址即可。同时处理订单交易成功后的逻辑倾泻在notifyProcess内。
